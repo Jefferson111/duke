@@ -19,43 +19,31 @@ public class Ui {
     }
 
     public void showWelcome() {
-        showLine();
-        String logo =    " ____        _        \n" +
-                PREFIX + "|  _ \\ _   _| | _____ \n" +
-                PREFIX + "| | | | | | | |/ / _ \\\n" +
-                PREFIX + "| |_| | |_| |   <  __/\n" +
-                PREFIX + "|____/ \\__,_|_|\\_\\___|\n";
-        show(logo);
-        show("Hello! I'm Duke");
-        show("What can I do for you?");
-        showLine();
+        show(Message.getWelcome());
     }
 
     public void showError(String message) {
-        show("☹ OOPS!!! " + message);
+        show(Message.getError(message));
     }
     
     public void showListSize(int size){
-        show("Now you have " + size + " tasks in the list.");
+        show(Message.getListSize(size));
     }
     
     public void showAddition(Task t){
-        show("Got it. I've added this task: \n  " + PREFIX + t);
+        show(Message.getAddition(t));
     }
     
     public void showDeletion(Task t){
-        show("Noted. I've removed this task: \n  " + PREFIX + t);
+        show(Message.getDeletion(t));
     }
     
     public void showMarkAsDone(Task t){
-        show("Nice! I've marked this task as done: \n  " + PREFIX + t);
+        show(Message.getMarkAsDone(t));
     }
     
     public void showTaskList(List<String> taskDescriptions){
-        show("Here are the tasks in your list:");
-        for (String s: taskDescriptions){
-            show(s);
-        }
+        show(Message.getTaskList(taskDescriptions));
     }
 
     public String readCommand() {
@@ -65,7 +53,7 @@ public class Ui {
     }
 
     public void showExitMessage() {
-        show("Bye. Hope to see you again soon!");
+        show(Message.getExitMessage());
     }
     
     public void showLine(){

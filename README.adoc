@@ -1,0 +1,18 @@
+# Duke
+
+## Getting Started
+
+. Clone this repo
+. `gradlew run -q --console=plain`
+
+## Changes
+
+* Messages are extracted into a utility class.
+* Gradle build file is added.
+* Unicode characters are changed to their escape sequence as they break on certain system locales.
+
+## Known problems
+
+. `gradle run` swallows the first input.
+. Design flaw: utility classes are _usually_ bad.
+In this case we could have inlined the message constants into their respective ``Command``s.

@@ -20,6 +20,7 @@ public class Duke {
 
     public void run() {
         ui.showWelcome();
+        System.out.flush();
         boolean isExit = false;
         while (!isExit) {
             try {
