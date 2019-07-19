@@ -36,7 +36,24 @@ public class Storage {
     }
 
     public void save(List<Task> tasks) throws DukeException {
-        
+        File f = new File(filePath);
+        try {
+            FileWriter fileWriter = new FileWriter(f, true);
+            Task t = tasks.get(tasks.size() - 1);
+            String line;
+            if (t instanceof Deadline) {
+                line = "D | " + t.isDone + " | " + t.description + " | " + ((Deadline) t).getBy();
+            } else if (t instanceof Todo) {
+                line = "T | " + t.isDone + " | " + t.description;
+            } else {
+                line = "E | " + t.isDone + " | " + t.description + " | " + ((Event) t).getAt();
+            }
+
+            fileWriter.write(line + "\n");
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new DukeException("File not found: " + e.getMessage());
+        }
     }
 
     private static List<String> getLines(String filePath) throws FileNotFoundException {
