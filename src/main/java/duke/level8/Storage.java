@@ -3,6 +3,8 @@ package duke.level8;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,8 +35,8 @@ public class Storage {
         return loadedTasks;
     }
 
-    public void save(List<Task> tasks) {
-
+    public void save(List<Task> tasks) throws DukeException {
+        
     }
 
     private static List<String> getLines(String filePath) throws FileNotFoundException {

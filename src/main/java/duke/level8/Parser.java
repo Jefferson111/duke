@@ -36,19 +36,35 @@ public class Parser {
         return new Todo(description);
     }
 
-    public static Deadline createDeadline(String line) {
+    public static Deadline createDeadline(String line) throws DukeException {
         String[] deadlineDetails = line.substring("deadline".length()).strip().split("/by");
+        if (deadlineDetails.length != 2 || deadlineDetails[1] == null) {
+            throw new DukeException("Invalid Deadline format.");
+        }
+        if (deadlineDetails[0].strip().isEmpty()) {
+            throw new DukeException("The description of a deadline cannot be empty.");
+        }
         return new Deadline(deadlineDetails[0].strip(), deadlineDetails[1].strip());
     }
-    
-    public static Event createEvent(String line) {
+
+    public static Event createEvent(String line) throws DukeException {
         String[] eventDetails = line.substring("event".length()).strip().split("/at");
+        if (eventDetails.length != 2 || eventDetails[1] == null) {
+            throw new DukeException("Invalid event format.");
+        }
+        if (eventDetails[0].strip().isEmpty()) {
+            throw new DukeException("The description of an event cannot be empty.");
+        }
         return new Event(eventDetails[0].strip(), eventDetails[1].strip());
     }
 
-    public static int getIndex(String line) {
+    public static int getIndex(String line) throws DukeException {
         String index = line.split(" ")[1].strip();
-        return Integer.parseInt(index);
+        try {
+            return Integer.parseInt(index);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Index have to be number!");
+        }
     }
 
     public static Task createTaskFromStorageLine(String line) {

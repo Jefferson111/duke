@@ -5,7 +5,7 @@ public class DeleteCommand extends Command {
     int index;
     
     public DeleteCommand(int index){
-        this.index = index;
+        this.index = index - 1;
     }
     
     @Override
