@@ -21,8 +21,11 @@ public class TaskList {
         tasks.add(task);
     }
 
-    public Task markAsDone(int index) {
-        Task t = tasks.get(index - 1);
+    public Task markAsDone(int index) throws DukeException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("No such task exist!");
+        }
+        Task t = tasks.get(index);
         t.setDone(true);
         return t;
     }
@@ -43,7 +46,10 @@ public class TaskList {
         return tasks;
     }
 
-    public Task delete(int index) {
+    public Task delete(int index) throws DukeException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("No such task exist!");
+        }
         return tasks.remove(index);
     }
 }
