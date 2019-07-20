@@ -51,7 +51,9 @@ public class Parser {
         if (deadlineDetails[0].strip().isEmpty()) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
-        return new Deadline(deadlineDetails[0].strip(), deadlineDetails[1].strip());
+        TimeParser timeParser = new TimeParser();
+        String date = timeParser.parseStringToDate(deadlineDetails[1].strip());
+        return new Deadline(deadlineDetails[0].strip(), date);
     }
 
     public static Event createEvent(String line) throws DukeException {
@@ -62,7 +64,9 @@ public class Parser {
         if (eventDetails[0].strip().isEmpty()) {
             throw new DukeException("The description of an event cannot be empty.");
         }
-        return new Event(eventDetails[0].strip(), eventDetails[1].strip());
+        TimeParser timeParser = new TimeParser();
+        String date = timeParser.parseStringToDate(eventDetails[1].strip());
+        return new Event(eventDetails[0].strip(), date);
     }
 
     public static int getIndex(String line) throws DukeException {
