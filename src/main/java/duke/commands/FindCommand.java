@@ -11,14 +11,11 @@ import duke.commons.DukeException;
 public class FindCommand extends Command {
 
     TaskList filteredTasks;
-    List<String> keywords;
+    String[] keywords;
 
-    public FindCommand(String[] words) {
+    public FindCommand(String[] keywords) {
         filteredTasks = new TaskList();
-        keywords = new ArrayList<>();
-        for (String word : words) {
-            keywords.add(word);
-        }
+        this.keywords = keywords;
     }
 
     @Override
