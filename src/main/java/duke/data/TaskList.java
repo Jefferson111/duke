@@ -33,6 +33,15 @@ public class TaskList {
         return tasks.size();
     }
 
+    public Task getTask(int index) throws DukeException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("No such task exist!");
+        }
+        Task t = tasks.get(index);
+        return t;
+    }
+
+
     public List<String> getTaskListDescriptions() {
         List<String> descriptions = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {

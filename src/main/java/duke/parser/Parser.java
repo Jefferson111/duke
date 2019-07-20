@@ -27,8 +27,14 @@ public class Parser {
                 return new ListCommand();
             case "done":
                 return new MarkCommand(getIndex(line));
+            case "find":
+                return new FindCommand(createKeyWords(line));
         }
         throw new DukeException(Ui.MESSAGE_UNKNOWN_COMMAND);
+    }
+
+    public static String[] createKeyWords(String line) {
+        return  line.substring("find".length()).strip().split(" ");
     }
 
     public static String getCommandWord(String line) {
