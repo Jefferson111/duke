@@ -1,4 +1,4 @@
-package duke.level8;
+package duke.data;
 
 public class Event extends Task {
 
@@ -11,6 +11,9 @@ public class Event extends Task {
 
     public String getAt() {
         return at;
+    }
+    public boolean isDone() {
+        return isDone;
     }
 
     @Override

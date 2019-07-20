@@ -1,4 +1,9 @@
-package duke.level8;
+package duke.commands;
+
+import duke.ui.Ui;
+import duke.storage.Storage;
+import duke.data.*;
+import duke.commons.DukeException;
 
 public class AddCommand extends Command {
     
@@ -9,7 +14,7 @@ public class AddCommand extends Command {
     }
     
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.addTask(task);
         ui.showAddition(task);
         ui.showListSize(tasks.size());

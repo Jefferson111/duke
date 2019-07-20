@@ -1,6 +1,7 @@
-package duke.level8;
+package duke.commons;
 
 import java.util.List;
+import duke.data.Task;
 
 public class Message {
     private static final String LINE = "____________________________________________________________";

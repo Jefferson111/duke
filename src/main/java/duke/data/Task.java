@@ -1,4 +1,4 @@
-package duke.level8;
+package duke.data;
 
 public abstract class Task {
     protected String description;
@@ -12,6 +12,7 @@ public abstract class Task {
     public void setDone(boolean status) {
         isDone = status;
     }
+    public String getDescription() { return description; }
 
     @Override
     public String toString() {

@@ -1,5 +1,11 @@
-package duke.level8;
+package duke;
 
+import duke.commands.*;
+import duke.commons.DukeException;
+import duke.ui.Ui;
+import duke.data.TaskList;
+import duke.storage.Storage;
+import duke.parser.Parser;
 
 public class Duke {
 

@@ -1,6 +1,11 @@
-package duke.level8;
+package duke.storage;
 
-
+import duke.parser.Parser;
+import duke.data.Task;
+import duke.data.Deadline;
+import duke.data.Event;
+import duke.data.Todo;
+import duke.commons.DukeException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -38,18 +43,18 @@ public class Storage {
     public void save(List<Task> tasks) throws DukeException {
         File f = new File(filePath);
         try {
-            FileWriter fileWriter = new FileWriter(f, true);
-            Task t = tasks.get(tasks.size() - 1);
-            String line;
-            if (t instanceof Deadline) {
-                line = "D | " + t.isDone + " | " + t.description + " | " + ((Deadline) t).getBy();
-            } else if (t instanceof Todo) {
-                line = "T | " + t.isDone + " | " + t.description;
-            } else {
-                line = "E | " + t.isDone + " | " + t.description + " | " + ((Event) t).getAt();
+            FileWriter fileWriter = new FileWriter(f);
+            for (Task t : tasks) {
+                String line;
+                if (t instanceof Deadline) {
+                    line = "D | " + ((Deadline) t).isDone() + " | " + t.getDescription() + " | " + ((Deadline) t).getBy();
+                } else if (t instanceof Todo) {
+                    line = "T | " + ((Todo) t).isDone() + " | " + t.getDescription();
+                } else {
+                    line = "E | " + ((Event) t).isDone() + " | " + t.getDescription() + " | " + ((Event) t).getAt();
+                }
+                fileWriter.write(line + "\n");
             }
-
-            fileWriter.write(line + "\n");
             fileWriter.close();
         } catch (IOException e) {
             throw new DukeException("File not found: " + e.getMessage());

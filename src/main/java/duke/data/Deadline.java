@@ -1,4 +1,4 @@
-package duke.level8;
+package duke.data;
 
 public class Deadline extends Task {
 
@@ -11,6 +11,9 @@ public class Deadline extends Task {
 
     public String getBy() {
         return by;
+    }
+    public boolean isDone() {
+        return isDone;
     }
 
     @Override
