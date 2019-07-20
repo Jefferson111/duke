@@ -66,9 +66,11 @@ public class Parser {
     }
 
     public static int getIndex(String line) throws DukeException {
-        String index = line.split(" ")[1].strip();
         try {
+            String index = line.split(" ")[1].strip();
             return Integer.parseInt(index);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Please type the index of the task marked done");
         } catch (NumberFormatException e) {
             throw new DukeException("Index have to be number!");
         }
