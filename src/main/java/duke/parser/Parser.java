@@ -1,11 +1,8 @@
 package duke.parser;
 
 import duke.commands.*;
+import duke.data.*;
 import duke.ui.Ui;
-import duke.data.Task;
-import duke.data.Todo;
-import duke.data.Event;
-import duke.data.Deadline;
 import duke.commons.DukeException;
 
 public class Parser {
@@ -23,6 +20,8 @@ public class Parser {
                 return new DeleteCommand(getIndex(line));
             case "event":
                 return new AddCommand(createEvent(line));
+            case "weekly":
+                return new AddCommand(createWeekly(line));
             case "list":
                 return new ListCommand();
             case "done":
@@ -57,8 +56,7 @@ public class Parser {
         if (deadlineDetails[0].strip().isEmpty()) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
-        TimeParser timeParser = new TimeParser();
-        String date = timeParser.parseStringToDate(deadlineDetails[1].strip());
+        String date = TimeParser.parseStringToDate(deadlineDetails[1].strip());
         return new Deadline(deadlineDetails[0].strip(), date);
     }
 
@@ -70,10 +68,22 @@ public class Parser {
         if (eventDetails[0].strip().isEmpty()) {
             throw new DukeException("The description of an event cannot be empty.");
         }
-        TimeParser timeParser = new TimeParser();
-        String date = timeParser.parseStringToDate(eventDetails[1].strip());
+        String date = TimeParser.parseStringToDate(eventDetails[1].strip());
         return new Event(eventDetails[0].strip(), date);
     }
+
+    public static Weekly createWeekly(String line) throws DukeException {
+        String[] weeklyDetails = line.substring("weekly".length()).strip().split("/on");
+        if (weeklyDetails.length != 2 || weeklyDetails[1] == null) {
+            throw new DukeException("Invalid weekly format.");
+        }
+        if (weeklyDetails[0].strip().isEmpty()) {
+            throw new DukeException("The description of a weekly cannot be empty.");
+        }
+        String day = TimeParser.parseStringToDay(weeklyDetails[1].strip());
+        return new Weekly(weeklyDetails[0].strip(), day);
+    }
+
 
     public static int getIndex(String line) throws DukeException {
         try {
@@ -96,7 +106,10 @@ public class Parser {
             t = new Todo(description);
         } else if (type.equals("D")) {
             t = new Deadline(description, taskParts[3].strip());
-        } else {
+        } else if (type.equals("W")) {
+            t = new Weekly(description, taskParts[3].strip());
+        }
+        else {
             t = new Event(description, taskParts[3].strip());
         }
         t.setDone(status.equals("true"));

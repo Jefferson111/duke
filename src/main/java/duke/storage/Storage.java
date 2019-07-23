@@ -1,10 +1,7 @@
 package duke.storage;
 
+import duke.data.*;
 import duke.parser.Parser;
-import duke.data.Task;
-import duke.data.Deadline;
-import duke.data.Event;
-import duke.data.Todo;
 import duke.commons.DukeException;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -50,6 +47,8 @@ public class Storage {
                     line = "D | " + ((Deadline) t).isDone() + " | " + t.getDescription() + " | " + ((Deadline) t).getBy();
                 } else if (t instanceof Todo) {
                     line = "T | " + ((Todo) t).isDone() + " | " + t.getDescription();
+                } else if (t instanceof Weekly) {
+                    line = "W | " + ((Weekly) t).isDone() + " | " + t.getDescription() + " | " + ((Weekly) t).getOn();
                 } else {
                     line = "E | " + ((Event) t).isDone() + " | " + t.getDescription() + " | " + ((Event) t).getAt();
                 }
