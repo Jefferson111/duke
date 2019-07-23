@@ -6,6 +6,7 @@ import duke.commons.DukeException;
 import duke.data.TaskList;
 import duke.parser.Parser;
 import duke.storage.Storage;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -40,7 +41,17 @@ public class MainWindow {
     }
 
     @FXML
-    void onSend() {
+    void onSend(ActionEvent event) {
+        runDuke();
+    }
+
+    @FXML
+    void onEnter(ActionEvent event) {
+        runDuke();
+    }
+
+
+    private void runDuke() {
         try {
             String fullCommand = gui.readCommand();
             gui.showLine();
@@ -60,6 +71,7 @@ public class MainWindow {
             gui.showLine();
         }
     }
+
 
     private void exitApp() throws Exception {
         mainApp.stop();

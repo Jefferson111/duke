@@ -22,7 +22,7 @@
               </ScrollPane>
               <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="100.0" VBox.vgrow="NEVER">
                   <children>
-                      <TextField fx:id="commandInput" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" prefWidth="298.0" promptText="Enter Message..." scaleShape="false" HBox.hgrow="ALWAYS">
+                      <TextField fx:id="commandInput" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" prefWidth="298.0" promptText="Enter Message..." scaleShape="false" HBox.hgrow="ALWAYS" onAction="#onEnter">
                           <font>
                               <Font name="SansSerif Regular" size="14.0" />
                           </font>

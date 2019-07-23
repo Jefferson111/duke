@@ -99,7 +99,7 @@ public class Parser {
         } else {
             t = new Event(description, taskParts[3].strip());
         }
-        t.setDone(status.equals("1"));
+        t.setDone(status.equals("true"));
         return t;
     }
 }
