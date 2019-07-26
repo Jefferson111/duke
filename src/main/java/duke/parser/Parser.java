@@ -5,6 +5,8 @@ import duke.data.*;
 import duke.ui.Ui;
 import duke.commons.DukeException;
 
+import java.util.Date;
+
 public class Parser {
     
     public static Command parse(String line) throws DukeException {
@@ -28,6 +30,8 @@ public class Parser {
                 return new MarkCommand(getIndex(line));
             case "find":
                 return new FindCommand(createKeyWords(line));
+            case "snooze":
+                return new SnoozeCommand(getIndex(line), getDay(line));
         }
         throw new DukeException(Ui.MESSAGE_UNKNOWN_COMMAND);
     }
@@ -56,7 +60,10 @@ public class Parser {
         if (deadlineDetails[0].strip().isEmpty()) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
-        String date = TimeParser.parseStringToDate(deadlineDetails[1].strip());
+        Date date = TimeParser.parseStringToDate(deadlineDetails[1].strip());
+        if (date == null) {
+            return new Deadline(deadlineDetails[0].strip(), deadlineDetails[1].strip());
+        }
         return new Deadline(deadlineDetails[0].strip(), date);
     }
 
@@ -68,7 +75,10 @@ public class Parser {
         if (eventDetails[0].strip().isEmpty()) {
             throw new DukeException("The description of an event cannot be empty.");
         }
-        String date = TimeParser.parseStringToDate(eventDetails[1].strip());
+        Date date = TimeParser.parseStringToDate(eventDetails[1].strip());
+        if (date == null) {
+            return new Event(eventDetails[0].strip(), eventDetails[1].strip());
+        }
         return new Event(eventDetails[0].strip(), date);
     }
 
@@ -90,9 +100,21 @@ public class Parser {
             String index = line.split(" ")[1].strip();
             return Integer.parseInt(index);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Please type the index of the task marked done");
+            throw new DukeException("Please indicate the index of the task.");
         } catch (NumberFormatException e) {
             throw new DukeException("Index have to be number!");
+        }
+    }
+
+    public static int getDay(String line) throws DukeException {
+        String[] snoozeDetails = line.substring("snooze".length()).strip().split("/by");
+        if (snoozeDetails.length != 2 || snoozeDetails[1] == null) {
+            throw new DukeException("Invalid snooze format.");
+        }
+        try {
+            return Integer.parseInt(snoozeDetails[1].strip());
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please indicate in numerical form the number of days to snooze.");
         }
     }
 
@@ -105,12 +127,22 @@ public class Parser {
         if (type.equals("T")) {
             t = new Todo(description);
         } else if (type.equals("D")) {
-            t = new Deadline(description, taskParts[3].strip());
+            Date date = TimeParser.parseStoredStringToDate(taskParts[3].strip());
+            if (date != null) {
+                t = new Deadline(description, date);
+            } else {
+                t = new Deadline(description, taskParts[3].strip());
+            }
         } else if (type.equals("W")) {
             t = new Weekly(description, taskParts[3].strip());
         }
         else {
-            t = new Event(description, taskParts[3].strip());
+            Date date = TimeParser.parseStoredStringToDate(taskParts[3].strip());
+            if (date != null) {
+                t = new Event(description, date);
+            } else {
+                t = new Event(description, taskParts[3].strip());
+            }
         }
         t.setDone(status.equals("true"));
         return t;

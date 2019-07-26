@@ -24,6 +24,7 @@ public class Message {
     public static final String MESSAGE_MARK_AS_DONE = "Nice! I've marked this task as done: \n" + PREFIX + "  %s\n";
     public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon!\n";
     public static final String MESSAGE_LIST = "Here are the tasks in your list:\n";
+    public static final String MESSAGE_SNOOZE = "Alright! I've rescheduled this task: \n" + PREFIX + "  %s\n";
 
     public static String getError(String message) {
         return String.format(MESSAGE_ERROR, message);
@@ -43,6 +44,10 @@ public class Message {
 
     public static String getMarkAsDone(Task t){
         return String.format(MESSAGE_MARK_AS_DONE, t);
+    }
+
+    public static String getSnooze(Task t){
+        return String.format(MESSAGE_SNOOZE, t);
     }
 
     public static String getTaskList(List<String> taskDescriptions){

@@ -60,4 +60,17 @@ public class TaskList {
         }
         return tasks.remove(index);
     }
+
+    public Task snoozeTask(int index, int day) throws DukeException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("No such task exist!");
+        }
+        Task t = tasks.get(index);
+        if (t instanceof TaskWithDates) {
+            ((TaskWithDates) t).snooze(day);
+            return t;
+        } else {
+            throw new DukeException("This type of task cannot be snoozed!");
+        }
+    }
 }

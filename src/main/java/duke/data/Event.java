@@ -1,12 +1,24 @@
 package duke.data;
 
-public class Event extends Task {
+import duke.parser.TimeParser;
+
+import java.util.Calendar;
+import java.util.Date;
+
+public class Event extends TaskWithDates {
 
     protected String at;
 
     public Event(String description, String at) {
         super(description);
         this.at = at;
+        this.date = null;
+    }
+
+    public Event(String description, Date date) {
+        super(description);
+        this.date = date;
+        this.at = TimeParser.parseDateToString(date);
     }
 
     public String getAt() {
@@ -14,6 +26,11 @@ public class Event extends Task {
     }
     public boolean isDone() {
         return isDone;
+    }
+
+    @Override
+    public void updateOtherDescriptions() {
+        at = TimeParser.parseDateToString(date);
     }
 
     @Override

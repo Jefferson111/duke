@@ -62,6 +62,10 @@ public class Ui {
         show(Message.getMarkAsDone(t));
     }
 
+    public void showSnooze(Task t){
+        show(Message.getSnooze(t));
+    }
+
     public void showTaskList(List<String> taskDescriptions){
         show(Message.getTaskList(taskDescriptions));
     }

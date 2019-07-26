@@ -15,25 +15,36 @@ public class TimeParser {
     private static final int TEN = 10;
     private static final int NINETEEN = 19;
 
-    public static String parseStringToDate(String line) {
-        try {
-            Date date = new SimpleDateFormat("dd/MM/yyyy HHmm").parse(line);
-            Calendar calender = Calendar.getInstance();
-            calender.setTime(date);
-            int day = calender.get(Calendar.DATE);
-            if (!((day > TEN) && (day < NINETEEN))) {
-                switch (day % TEN) {
-                    case 1:
-                        return new SimpleDateFormat("dd'st of' MMM yyyy',' hh:mm aaa").format(date);
-                    case 2:
-                        return new SimpleDateFormat("dd'nd of' MMM yyyy',' hh:mm aaa").format(date);
-                    case 3:
-                        return new SimpleDateFormat("dd'rd of' MMM yyyy',' hh:mm aaa").format(date);
-                }
+    public static String parseDateToString(Date date) {
+        Calendar calender = Calendar.getInstance();
+        calender.setTime(date);
+        int day = calender.get(Calendar.DATE);
+        if (!((day > TEN) && (day < NINETEEN))) {
+            switch (day % TEN) {
+                case 1:
+                    return new SimpleDateFormat("dd'st of' MMM yyyy',' hh:mm aaa").format(date);
+                case 2:
+                    return new SimpleDateFormat("dd'nd of' MMM yyyy',' hh:mm aaa").format(date);
+                case 3:
+                    return new SimpleDateFormat("dd'rd of' MMM yyyy',' hh:mm aaa").format(date);
             }
-            return new SimpleDateFormat("dd'th of' MMM yyyy',' hh:mm aaa").format(date);
+        }
+        return new SimpleDateFormat("dd'th of' MMM yyyy',' hh:mm aaa").format(date);
+    }
+
+    public static Date parseStoredStringToDate(String line) {
+        try {
+            return new SimpleDateFormat("dd' of' MMM yyyy',' hh:mm aaa").parse(line.replaceAll("st|nd|rd|th", ""));
         } catch (ParseException e) {
-            return line;
+            return null;
+        }
+    }
+
+    public static Date parseStringToDate(String line) {
+        try {
+            return new SimpleDateFormat("dd/MM/yyyy HHmm").parse(line);
+        } catch (ParseException e) {
+            return null;
         }
     }
 
