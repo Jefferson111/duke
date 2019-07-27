@@ -3,7 +3,7 @@ package duke.ui;
 
 import duke.commands.Command;
 import duke.commons.DukeException;
-import duke.data.TaskList;
+import duke.data.taskList.TaskListAllTypes;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import javafx.event.ActionEvent;
@@ -21,7 +21,7 @@ public class MainWindow {
 
     private Ui gui;
     private Storage storage;
-    private TaskList tasks;
+    private TaskListAllTypes tasks;
     private Stoppable mainApp;
 
     public void initialise(Stoppable mainApp) {
@@ -31,10 +31,10 @@ public class MainWindow {
         outputConsole.setContent(listView);
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList(storage.load());
+            tasks = new TaskListAllTypes(storage.load());
         } catch (DukeException e) {
             gui.show(gui.MESSAGE_ERROR_READING_DATA_FILE);
-            tasks = new TaskList();
+            tasks = new TaskListAllTypes();
         }
         this.mainApp = mainApp;
         gui.showWelcome();

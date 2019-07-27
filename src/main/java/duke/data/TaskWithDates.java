@@ -24,6 +24,8 @@ public abstract class TaskWithDates extends Task {
         updateOtherDescriptions();
     }
 
+    public Date getDate() { return date; }
+
     public abstract void updateOtherDescriptions();
 
 }

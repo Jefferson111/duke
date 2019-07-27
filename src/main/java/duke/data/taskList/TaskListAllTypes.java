@@ -1,18 +1,21 @@
-package duke.data;
+package duke.data.taskList;
 
 import duke.commons.DukeException;
+import duke.data.Task;
+import duke.data.TaskWithDates;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskList {
+public class TaskListAllTypes implements TaskList<Task> {
 
     private List<Task> tasks ;
 
-    public TaskList(List<Task> tasks) {
+    public TaskListAllTypes(List<Task> tasks) {
         this.tasks = tasks;
     }
 
-    public TaskList() {
+    public TaskListAllTypes() {
         tasks = new ArrayList<>();
     }
 

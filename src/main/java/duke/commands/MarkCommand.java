@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.data.taskList.TaskListAllTypes;
 import duke.ui.Ui;
 import duke.storage.Storage;
 import duke.data.*;
@@ -14,7 +15,7 @@ public class MarkCommand extends Command {
     }
     
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskListAllTypes tasks, Ui ui, Storage storage) throws DukeException {
         Task t = tasks.markAsDone(index);
         ui.showMarkAsDone(t);
         storage.save(tasks.list());
