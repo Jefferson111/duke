@@ -1,18 +1,29 @@
-# Duke
+= Duke (Level 10)
+ifdef::env-github,env-browser[:relfileprefix: docs/]
 
-## Getting Started
+ifdef::env-github[]
+image::docs/images/Ui.png[width="600"]
+endif::[]
 
-. Clone this repo
-. `gradlew run -q --console=plain`
+ifndef::env-github[]
+image::images/Ui.png[width="600"]
+endif::[]
 
-## Changes
+* The project aims to build a product named Duke, a Personal Assistant Chatbot that helps a person to keep track of various things.
+* It is a Java sample application intended for students learning Software Engineering while using Java as the main programming language.
+* Project Duke is a **__?small?__** software project designed to take you through the steps of building a small software incrementally, while applying many Java and SE techniques along the way.
 
-* Messages are extracted into a utility class.
-* Gradle build file is added.
-* Unicode characters are changed to their escape sequence as they break on certain system locales.
+== Site Map
 
-## Known problems
+* <<UserGuide#, User Guide>>
+//* <<DeveloperGuide#, Developer Guide>>
+//* <<AboutUs#, About Us>>
+//* <<ContactUs#, Contact Us>>
 
-. `gradle run` swallows the first input.
-. Design flaw: utility classes are _usually_ bad.
-In this case we could have inlined the message constants into their respective ``Command``s.
+== Acknowledgements
+
+* Most parts of this sample application came from https://github.com/j-lum/duke[Duke] by someone.
+* Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by
+_Marco Jakob_.
+* Libraries used: https://github.com/TestFX/TestFX[TestFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/junit-team/junit5[JUnit5]
+
