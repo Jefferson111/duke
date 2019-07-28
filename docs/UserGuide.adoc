@@ -24,10 +24,10 @@ Only Java 8 is supported. +
 This app will not work with later major Java releases such as Java 9, 10, 11, etc.
 +
 .  Download the latest `duke.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Copy the file to the folder you want to use as the home folder for your Duke.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+image::Ui.PNG[width="230" height="400"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it.
 .  Some example commands you can try:
@@ -51,12 +51,39 @@ image::Ui.png[width="790"]
 
 === Adding a task: `todo`
 
-Adds a task to the address book +
+Adds a task to Duke +
 Format: `todo TASK`
 
 Examples:
 
 * `todo Catch Fish`
+
+=== Adding a deadline: `deadline`
+
+Adds a deadline to Duke +
+Format: `deadline TASK /by DESCRIPTOR`
+
+Examples:
+
+* `deadline Individual Project /by 09/09/2019 0900`
+
+=== Adding an event: `event`
+
+Adds an event to Duke +
+Format: `event TASK /at DESCRIPTOR`
+
+Examples:
+
+* `event EXAM /at MPSH tomorrow`
+
+=== Adding a weekly: `weekly`
+
+Adds a weekly recurring task to Duke +
+Format: `weekly TASK /on DAY_OF_THE_WEEK`
+
+Examples:
+
+* `weekly Project Meeting /on Monday`
 
 === Listing all persons : `list`
 
@@ -99,6 +126,23 @@ Examples:
 `delete 2` +
 Deletes the 2nd task in Duke.
 
+=== Marking a task : `done`
+
+Mark the specified task as done on Duke. +
+Format: `done INDEX`
+
+****
+* Marks the task done at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Examples:
+
+* `list` +
+`done 2` +
+Marks the 2nd task as done in Duke.
+
 === Exiting the program : `bye`
 
 Exits the program. +
@@ -118,8 +162,16 @@ There is no need to save manually.
 
 * *Todo* `todo TASK` +
 e.g. `todo Catch Fish`
+* *Deadline* `deadline TASK /by DESCRIPTOR` +
+e.g. `deadline Individual Project /by 09/09/2019 0900`
+* *Event* `event TASK /at DESCRIPTOR` +
+e.g. `event EXAM /at MPSH tomorrow`
+* *Weekly* `weekly TASK /on DAY_OF_THE_WEEK` +
+e.g. `weekly Project Meeting /on Monday`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
+* *Done* : `done INDEX` +
+e.g. `done 2`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *List* : `list`
