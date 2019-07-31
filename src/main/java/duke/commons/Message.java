@@ -25,6 +25,18 @@ public class Message {
     public static final String MESSAGE_EXIT = "Bye. Hope to see you again soon!\n";
     public static final String MESSAGE_LIST = "Here are the tasks in your list:\n";
     public static final String MESSAGE_SNOOZE = "Alright! I've rescheduled this task: \n" + PREFIX + "  %s\n";
+    public static final String MESSAGE_HELP = "Here are the commands you can type:\n";
+
+    public static final String[] MESSAGE_USAGE = {"todo: Adds a todo to Duke\n" + PREFIX + "Parameters: todo TASK\n" + PREFIX + "Example: todo Catch Fish\n",
+            "deadline: Adds a deadline to Duke\n" + PREFIX + "Parameters: deadline TASK /by DESCRIPTOR\n" + PREFIX + "Example: deadline homework /by tomorrow\n",
+            "event: Adds an event to Duke\n" + PREFIX + "Parameters: event TASK /at DESCRIPTOR\n" + PREFIX + "Example: event Exam /at Multi-Purpose-Hall\n",
+            "weekly: Adds a weekly task to Duke\n" + PREFIX + "Parameters: weekly TASK /on DAY_OF_WEEK\n" + PREFIX + "Example: weekly Meeting /on Monday\n",
+            "list: Show the current list of tasks\n" + PREFIX + "Parameters: list\n" + PREFIX + "Example: list\n",
+            "delete: Remove a task from Duke\n" + PREFIX + "Parameters: delete INDEX\n" + PREFIX + "Example: delete 1\n",
+            "done: Mark a task as done on Duke\n" + PREFIX + "Parameters: done INDEX\n" + PREFIX + "Example: done 2\n",
+            "find: Find tasks from Duke\n" + PREFIX + "Parameters: find KEYWORD...\n" + PREFIX + "Example: find meeting\n",
+            "bye: Close Duke\n" + PREFIX + "Parameters: bye\n" + PREFIX + "Example: bye\n"
+    };
 
     public static String getError(String message) {
         return String.format(MESSAGE_ERROR, message);
@@ -61,6 +73,15 @@ public class Message {
 
     public static String getExitMessage() {
         return MESSAGE_EXIT;
+    }
+
+    public static String getHelp() {
+        StringBuilder message = new StringBuilder();
+        message.append(MESSAGE_HELP + "\n");
+        for (String s: MESSAGE_USAGE){
+            message.append(PREFIX + s + "\n");
+        }
+        return message.toString();
     }
 
     public static String getWelcome() {

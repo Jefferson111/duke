@@ -34,6 +34,8 @@ public class Parser {
                 return new SnoozeCommand(getIndex(line), getDay(line));
             case "reminder":
                 return new ReminderCommand();
+            case "help":
+                return new HelpCommand();
         }
         throw new DukeException(Ui.MESSAGE_UNKNOWN_COMMAND);
     }

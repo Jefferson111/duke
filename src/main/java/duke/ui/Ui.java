@@ -42,6 +42,8 @@ public class Ui {
         show(Message.getWelcome());
     }
 
+    public void showHelp() { show(Message.getHelp()); }
+
     public void showError(String message) {
         show(Message.getError(message));
     }
