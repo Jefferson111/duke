@@ -1,8 +1,8 @@
 package duke.commands;
 
 import duke.commons.DukeException;
-import duke.data.Task;
-import duke.data.TaskWithDates;
+import duke.data.task.Task;
+import duke.data.task.TaskWithDates;
 import duke.data.taskList.TaskListAllTypes;
 import duke.data.taskList.TaskListWithDates;
 import duke.storage.Storage;

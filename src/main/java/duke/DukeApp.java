@@ -15,7 +15,7 @@ public class DukeApp extends Application implements Stoppable {
     public void start(Stage stage) throws Exception{
         FXMLLoader loader = new FXMLLoader(
                 DukeApp.class.getResource("/view/MainWindow.fxml"));
-        stage.setTitle("Duke level-8");
+        stage.setTitle("Duke");
         BorderPane borderPane = (BorderPane) loader.load(); //Exception handling lmao
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);

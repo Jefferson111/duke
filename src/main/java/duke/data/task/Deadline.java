@@ -1,4 +1,4 @@
-package duke.data;
+package duke.data.task;
 
 import duke.parser.TimeParser;
 

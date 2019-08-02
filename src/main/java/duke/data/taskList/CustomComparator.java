@@ -1,6 +1,6 @@
 package duke.data.taskList;
 
-import duke.data.TaskWithDates;
+import duke.data.task.TaskWithDates;
 
 import java.util.Comparator;
 

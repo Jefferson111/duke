@@ -1,7 +1,7 @@
 package duke.commons;
 
 import java.util.List;
-import duke.data.Task;
+import duke.data.task.Task;
 
 public class Message {
     private static final String LINE = "____________________________________________________________";

@@ -1,7 +1,7 @@
 package duke.data.taskList;
 
 import duke.commons.DukeException;
-import duke.data.TaskWithDates;
+import duke.data.task.TaskWithDates;
 
 import java.util.ArrayList;
 import java.util.List;

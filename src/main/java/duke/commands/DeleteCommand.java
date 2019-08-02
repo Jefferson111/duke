@@ -2,7 +2,7 @@ package duke.commands;
 
 import duke.ui.Ui;
 import duke.storage.Storage;
-import duke.data.Task;
+import duke.data.task.Task;
 import duke.data.taskList.TaskListAllTypes;
 import duke.commons.DukeException;
 

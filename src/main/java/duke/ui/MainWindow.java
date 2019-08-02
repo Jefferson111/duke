@@ -1,6 +1,5 @@
 package duke.ui;
 
-
 import duke.commands.Command;
 import duke.commons.DukeException;
 import duke.data.taskList.TaskListAllTypes;
@@ -26,9 +25,13 @@ public class MainWindow {
 
     public void initialise(Stoppable mainApp) {
         String filePath = "data/tasks.txt";
-        gui = new Ui(commandInput);
-        ListView<String> listView = gui.getListView();
-        outputConsole.setContent(listView);
+        initialiseGui();
+        initialiseStorage(filePath);
+        this.mainApp = mainApp;
+        gui.showWelcome();
+    }
+
+    private void initialiseStorage(String filePath) {
         storage = new Storage(filePath);
         try {
             tasks = new TaskListAllTypes(storage.load());
@@ -36,8 +39,12 @@ public class MainWindow {
             gui.show(gui.MESSAGE_ERROR_READING_DATA_FILE);
             tasks = new TaskListAllTypes();
         }
-        this.mainApp = mainApp;
-        gui.showWelcome();
+    }
+
+    private void initialiseGui() {
+        gui = new Ui(commandInput);
+        ListView<String> listView = gui.getListView();
+        outputConsole.setContent(listView);
     }
 
     @FXML
@@ -49,7 +56,6 @@ public class MainWindow {
     void onEnter(ActionEvent event) {
         runDuke();
     }
-
 
     private void runDuke() {
         try {
@@ -71,7 +77,6 @@ public class MainWindow {
             gui.showLine();
         }
     }
-
 
     private void exitApp() throws Exception {
         mainApp.stop();

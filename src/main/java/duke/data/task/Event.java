@@ -1,8 +1,7 @@
-package duke.data;
+package duke.data.task;
 
 import duke.parser.TimeParser;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Event extends TaskWithDates {

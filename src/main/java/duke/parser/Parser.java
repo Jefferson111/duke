@@ -1,7 +1,7 @@
 package duke.parser;
 
 import duke.commands.*;
-import duke.data.*;
+import duke.data.task.*;
 import duke.ui.Ui;
 import duke.commons.DukeException;
 

@@ -1,7 +1,6 @@
-package duke.data;
+package duke.data.task;
 
 import duke.commons.DukeException;
-import duke.parser.TimeParser;
 
 import java.util.Calendar;
 import java.util.Date;
