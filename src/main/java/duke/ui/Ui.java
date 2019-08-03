@@ -2,39 +2,27 @@ package duke.ui;
 
 import duke.commons.Message;
 import duke.data.task.Task;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 
 public class Ui {
 
-    private static final String LINE = "____________________________________________________________";
     static String PREFIX = "     ";
     public static final String MESSAGE_UNKNOWN_COMMAND =
             "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_ERROR_READING_DATA_FILE =
             "Problem reading file. Starting with an empty task list";
-    
-    private ListView<String> listView;
-    private ObservableList<String> content;
 
     @FXML
-    private TextField commandInput;
+    private VBox dialogContainer;
 
-    public Ui(TextField commandInput) {
-        this.commandInput = commandInput;
-        content = FXCollections.observableArrayList();
-        listView = new ListView<>(content);
-        listView.setMaxHeight(Double.POSITIVE_INFINITY);
-        listView.setMaxWidth(Double.POSITIVE_INFINITY);
-    }
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.jpg"));
 
-    public ListView<String> getListView() {
-        return listView;
+    public Ui(VBox dialogContainer) {
+        this.dialogContainer = dialogContainer;
     }
 
     public void showWelcome() {
@@ -71,27 +59,13 @@ public class Ui {
         show(Message.getTaskList(taskDescriptions));
     }
 
-    public String readCommand() {
-        String line = commandInput.getText();
-        clearCommandInput();
-        content.add("\n" + line);
-        return line.trim();
-    }
-
-    /** Clears the command input box */
-    private void clearCommandInput() {
-        commandInput.setText("");
-    }
-
     public void showExitMessage() {
         show(Message.getExitMessage());
     }
 
-    public void showLine(){
-        content.add("    " + LINE);
-    }
-
     public void show(String msg){
-        content.add(PREFIX + msg);
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(msg, duke)
+        );
     }
 }

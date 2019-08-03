@@ -6,23 +6,27 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class DukeApp extends Application implements Stoppable {
 
     @Override
     public void start(Stage stage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(
-                DukeApp.class.getResource("/view/MainWindow.fxml"));
-        stage.setTitle("Duke");
-        BorderPane borderPane = (BorderPane) loader.load(); //Exception handling lmao
-        Scene scene = new Scene(borderPane);
-        stage.setScene(scene);
-        stage.show();
-
-        MainWindow mainWindow = loader.getController();
-        mainWindow.initialise(this);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(DukeApp.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = (AnchorPane) fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            stage.show();
+            MainWindow mainWindow = fxmlLoader.getController();
+            mainWindow.initialise(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -35,5 +39,4 @@ public class DukeApp extends Application implements Stoppable {
     public static void main(String[] args) {
         launch();
     }
-
 }
