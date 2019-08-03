@@ -14,9 +14,16 @@ import java.io.IOException;
 
 public class DukeApp extends Application implements Stoppable {
 
+    private Stage mainStage;
+
+    public Stage getMainStage() {
+        return mainStage;
+    }
+
     @Override
     public void start(Stage stage) throws Exception{
         try {
+            mainStage = stage;
             FXMLLoader fxmlLoader = new FXMLLoader(DukeApp.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = (AnchorPane) fxmlLoader.load();
             Scene scene = new Scene(ap);
@@ -28,6 +35,8 @@ public class DukeApp extends Application implements Stoppable {
             e.printStackTrace();
         }
     }
+
+
 
     @Override
     public void stop() throws Exception {

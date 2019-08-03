@@ -1,5 +1,6 @@
 package duke.ui;
 
+import duke.DukeApp;
 import duke.logic.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -21,14 +25,18 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+    @FXML
+    private Button sendImageButton;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
     private Duke duke;
+    private DukeApp dukeApp;
 
     @FXML
-    public void initialise(Stoppable app) {
+    public void initialise(DukeApp dukeApp) {
+        this.dukeApp = dukeApp;
         Ui ui = new Ui(dialogContainer);
-        duke = new Duke(app, ui);
+        duke = new Duke(dukeApp, ui);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
@@ -46,4 +54,24 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
+    @FXML
+    private void handleUserImageInput() {
+        try {
+            File imageFile = getFile();
+            dialogContainer.getChildren().addAll(
+                    ImageDialogBox.getUserDialog(new Image(imageFile.toURI().toString()), user)
+            );
+            duke.getImageResponse(imageFile);
+        } catch (Exception e) {
+            //user cancelled operation, do nothing
+        }
+    }
+
+    private File getFile() throws Exception {
+        FileChooser.ExtensionFilter imageFilter
+                = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(imageFilter);
+        return fc.showOpenDialog(dukeApp.getMainStage());
+    }
 }

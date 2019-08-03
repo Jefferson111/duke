@@ -1,6 +1,7 @@
 package duke.logic;
 
 import duke.commands.Command;
+import duke.commands.ImageCommand;
 import duke.commons.DukeException;
 import duke.data.taskList.TaskListAllTypes;
 import duke.parser.Parser;
@@ -8,12 +9,16 @@ import duke.storage.Storage;
 import duke.ui.Stoppable;
 import duke.ui.Ui;
 
+import java.io.File;
+import java.util.List;
+
 public class Duke {
 
     private Ui ui;
     private Storage storage;
     private TaskListAllTypes tasks;
     private Stoppable mainApp;
+    private Classificator classificator;
 
     public Duke(Stoppable mainApp, Ui ui) {
         initialise(mainApp, ui);
@@ -25,6 +30,7 @@ public class Duke {
         initialiseStorage(filePath);
         initialiseUi(ui);
         this.mainApp = mainApp;
+        classificator = new Classificator();
     }
 
     private void initialiseUi(Ui ui) {
@@ -61,4 +67,12 @@ public class Duke {
         mainApp.stop();
     }
 
+    public void getImageResponse(File imageFile) {
+        try {
+            Command c = new ImageCommand(imageFile, classificator);
+            c.execute(tasks, ui, storage);
+        } catch (Exception e) {
+            ui.showError(e.getMessage());
+        }
+    }
 }
