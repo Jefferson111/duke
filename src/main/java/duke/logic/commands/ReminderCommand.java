@@ -1,4 +1,4 @@
-package duke.commands;
+package duke.logic.commands;
 
 import duke.commons.DukeException;
 import duke.data.task.Task;

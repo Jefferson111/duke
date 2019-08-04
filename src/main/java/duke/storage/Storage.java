@@ -1,7 +1,7 @@
 package duke.storage;
 
 import duke.data.task.*;
-import duke.parser.Parser;
+import duke.logic.parser.Parser;
 import duke.commons.DukeException;
 import java.io.File;
 import java.io.FileNotFoundException;

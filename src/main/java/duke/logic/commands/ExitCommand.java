@@ -1,4 +1,4 @@
-package duke.commands;
+package duke.logic.commands;
 
 import duke.ui.Ui;
 import duke.storage.Storage;

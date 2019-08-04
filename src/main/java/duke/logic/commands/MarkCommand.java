@@ -1,25 +1,23 @@
-package duke.commands;
+package duke.logic.commands;
 
-import duke.commons.DukeException;
 import duke.data.task.Task;
 import duke.data.taskList.TaskListAllTypes;
-import duke.storage.Storage;
 import duke.ui.Ui;
+import duke.storage.Storage;
+import duke.commons.DukeException;
 
-public class SnoozeCommand extends Command {
-
+public class MarkCommand extends Command {
+    
     int index;
-    int day;
-
-    public SnoozeCommand(int index, int day){
+    
+    public MarkCommand(int index){
         this.index = index - 1;
-        this.day = day;
     }
-
+    
     @Override
     public void execute(TaskListAllTypes tasks, Ui ui, Storage storage) throws DukeException {
-        Task t = tasks.snoozeTask(index, day);
-        ui.showSnooze(t);
+        Task t = tasks.markAsDone(index);
+        ui.showMarkAsDone(t);
         storage.save(tasks.list());
     }
 }

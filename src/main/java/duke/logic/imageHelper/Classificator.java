@@ -1,4 +1,4 @@
-package duke.logic;
+package duke.logic.imageHelper;
 
 import org.tensorflow.Graph;
 import org.tensorflow.Session;

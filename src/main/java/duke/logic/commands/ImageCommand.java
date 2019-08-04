@@ -1,9 +1,9 @@
-package duke.commands;
+package duke.logic.commands;
 
 import duke.commons.DukeException;
 import duke.data.taskList.TaskListAllTypes;
-import duke.logic.Classificator;
-import duke.logic.ImageProcessor;
+import duke.logic.imageHelper.Classificator;
+import duke.logic.imageHelper.ImageProcessor;
 import duke.storage.Storage;
 import duke.ui.Ui;
 

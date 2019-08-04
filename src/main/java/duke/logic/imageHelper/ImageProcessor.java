@@ -1,4 +1,4 @@
-package duke.logic;
+package duke.logic.imageHelper;
 
 import org.bytedeco.opencv.opencv_core.CvScalar;
 import org.bytedeco.opencv.opencv_core.IplImage;

@@ -1,28 +1,28 @@
 package duke.logic;
 
-import duke.commands.Command;
-import duke.commands.ImageCommand;
+import duke.logic.imageHelper.Classificator;
+import duke.logic.commands.Command;
+import duke.logic.commands.ImageCommand;
 import duke.commons.DukeException;
 import duke.data.taskList.TaskListAllTypes;
-import duke.parser.Parser;
+import duke.logic.parser.Parser;
 import duke.storage.Storage;
 import duke.ui.Stoppable;
 import duke.ui.Ui;
 
 import java.io.File;
-import java.util.List;
 
-public class Duke {
+public class Logic {
 
     private Ui ui;
     private Storage storage;
     private TaskListAllTypes tasks;
+
     private Stoppable mainApp;
     private Classificator classificator;
 
-    public Duke(Stoppable mainApp, Ui ui) {
+    public Logic(Stoppable mainApp, Ui ui) {
         initialise(mainApp, ui);
-        ui.showWelcome();
     }
 
     private void initialise(Stoppable mainApp, Ui ui) {
@@ -35,6 +35,7 @@ public class Duke {
 
     private void initialiseUi(Ui ui) {
         this.ui = ui;
+        ui.showWelcome();
     }
 
     private void initialiseStorage(String filePath) {
@@ -52,14 +53,18 @@ public class Duke {
             Command c = Parser.parse(userInput);
             c.execute(tasks, ui, storage);
             if (c.isExit()) {
-                try {
-                    exitApp();
-                } catch (Exception e) {
-                    ui.showError("Exit app failed" + e.getMessage());
-                }
+                tryExitApp();
             }
         } catch (DukeException e) {
             ui.showError(e.getMessage());
+        }
+    }
+
+    private void tryExitApp() {
+        try {
+            exitApp();
+        } catch (Exception e) {
+            ui.showError("Exit app failed" + e.getMessage());
         }
     }
 

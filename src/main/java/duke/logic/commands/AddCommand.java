@@ -1,4 +1,4 @@
-package duke.commands;
+package duke.logic.commands;
 
 import duke.data.task.Task;
 import duke.data.taskList.TaskListAllTypes;

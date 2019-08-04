@@ -1,7 +1,7 @@
 package duke.ui;
 
 import duke.DukeApp;
-import duke.logic.Duke;
+import duke.logic.Logic;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -29,14 +29,14 @@ public class MainWindow extends AnchorPane {
     private Button sendImageButton;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
-    private Duke duke;
+    private Logic logic;
     private DukeApp dukeApp;
 
     @FXML
     public void initialise(DukeApp dukeApp) {
         this.dukeApp = dukeApp;
         Ui ui = new Ui(dialogContainer);
-        duke = new Duke(dukeApp, ui);
+        logic = new Logic(dukeApp, ui);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
@@ -50,7 +50,7 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, user)
         );
-        duke.getResponse(input);
+        logic.getResponse(input);
         userInput.clear();
     }
 
@@ -61,7 +61,7 @@ public class MainWindow extends AnchorPane {
             dialogContainer.getChildren().addAll(
                     ImageDialogBox.getUserDialog(new Image(imageFile.toURI().toString()), user)
             );
-            duke.getImageResponse(imageFile);
+            logic.getImageResponse(imageFile);
         } catch (Exception e) {
             //user cancelled operation, do nothing
         }

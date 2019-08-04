@@ -1,6 +1,6 @@
-package duke.parser;
+package duke.logic.parser;
 
-import duke.commands.*;
+import duke.logic.commands.*;
 import duke.data.task.*;
 import duke.ui.Ui;
 import duke.commons.DukeException;
