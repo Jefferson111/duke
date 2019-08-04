@@ -10,13 +10,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
-public class MainWindow extends AnchorPane {
+public class MainWindow extends UiPart<Stage> {
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -28,9 +29,18 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendImageButton;
 
+    private static final String FXML = "MainWindow.fxml";
+    private Stage primaryStage;
+
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
     private Logic logic;
     private DukeApp dukeApp;
+
+
+    public MainWindow(Stage primaryStage) {
+        super(FXML, primaryStage);
+        this.primaryStage = primaryStage;
+    }
 
     @FXML
     public void initialise(DukeApp dukeApp) {
@@ -67,11 +77,20 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    @FXML
+    private void handleExit() {
+        logic.tryExitApp();
+    }
+
+    public void show() {
+        primaryStage.show();
+    }
+
     private File getFile() throws Exception {
         FileChooser.ExtensionFilter imageFilter
                 = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(imageFilter);
-        return fc.showOpenDialog(dukeApp.getMainStage());
+        return fc.showOpenDialog(primaryStage);
     }
 }

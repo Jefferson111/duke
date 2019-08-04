@@ -1,30 +1,24 @@
 package duke.ui;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.io.IOException;
+public class ImageDialogBox extends UiPart<HBox> {
 
-public class ImageDialogBox extends HBox {
+    private static final String FXML = "DialogBox.fxml";
+
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
 
     private ImageDialogBox(Image queryImage, Image profileImage) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
-            fxmlLoader.setController(this);
-            fxmlLoader.setRoot(this);
-            fxmlLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.setStyle("-fx-background-color: yellow;" + "-fx-background-radius: 20;" + "-fx-padding: 15;" +
+        super(FXML);
+
+        this.getRoot().setStyle("-fx-background-color: yellow;" + "-fx-background-radius: 20;" + "-fx-padding: 15;" +
                 "-fx-border-insets: 5;" +
                 "-fx-background-insets: 5;");
         dialog.setText("<-----------------Image<-----------------Query");
@@ -39,10 +33,10 @@ public class ImageDialogBox extends HBox {
         iv.setFitWidth(99);
         iv.setPreserveRatio(true);
         iv.setPickOnBounds(true);
-        this.getChildren().add(0, iv);
+        this.getRoot().getChildren().add(0, iv);
     }
 
-    public static ImageDialogBox getUserDialog(Image queryImage, Image profileImage) {
-        return new ImageDialogBox(queryImage, profileImage);
+    public static HBox getUserDialog(Image queryImage, Image profileImage) {
+        return new ImageDialogBox(queryImage, profileImage).getRoot();
     }
 }

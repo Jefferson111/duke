@@ -60,7 +60,7 @@ public class Logic {
         }
     }
 
-    private void tryExitApp() {
+    public void tryExitApp() {
         try {
             exitApp();
         } catch (Exception e) {
