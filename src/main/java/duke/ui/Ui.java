@@ -8,9 +8,11 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
+/**
+ * The Ui component of Duke
+ */
 public class Ui {
 
-    static String PREFIX = "     ";
     public static final String MESSAGE_UNKNOWN_COMMAND =
             "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_ERROR_READING_DATA_FILE =
@@ -25,6 +27,9 @@ public class Ui {
         this.dialogContainer = dialogContainer;
     }
 
+    /**
+     * Generates and prints the welcome message upon the start of the application.
+     */
     public void showWelcome() {
         show(Message.getWelcome());
     }
@@ -63,6 +68,7 @@ public class Ui {
         show(Message.getExitMessage());
     }
 
+    /** Shows message(s) to the user */
     public void show(String msg){
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(msg, duke)

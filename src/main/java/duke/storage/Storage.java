@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Manages storage of Duke data in local storage.
+ */
 public class Storage {
 
     private String filePath;
@@ -19,6 +22,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from filepath
+     *
+     * @return List of tasks
+     * @throws DukeException If file not found
+     */
     public List<Task> load() throws DukeException {
         List<Task> loadedTasks = new ArrayList<>();
         List<String> lines;
@@ -37,6 +46,12 @@ public class Storage {
         return loadedTasks;
     }
 
+    /**
+     * Saves the tasks into a file
+     *
+     * @param tasks List of tasks
+     * @throws DukeException If file cannot be written/found
+     */
     public void save(List<Task> tasks) throws DukeException {
         File f = new File(filePath);
         try {
@@ -60,6 +75,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads the file from the file path and return them as list of Strings
+     *
+     * @param filePath Relative path to the file
+     * @return List of Strings read from the file
+     * @throws FileNotFoundException
+     */
     private static List<String> getLines(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);

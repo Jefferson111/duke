@@ -29,6 +29,7 @@ public class DialogBox extends UiPart<HBox> {
 
     private DialogBox(String text, Image img) {
         super(FXML);
+
         //note the difference between margin and padding, to create the same effect in javafx, the following is used
         this.getRoot().setStyle("-fx-background-color: lightblue;" + "-fx-background-radius: 20;" + "-fx-padding: 15;" +
                 "-fx-border-insets: 5;" +

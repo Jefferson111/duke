@@ -12,6 +12,9 @@ import duke.ui.Ui;
 
 import java.io.File;
 
+/**
+ * The main Logic of the app.
+ */
 public class Logic {
 
     private Ui ui;
@@ -25,6 +28,12 @@ public class Logic {
         initialise(mainApp, ui);
     }
 
+    /**
+     * Initialises the logic of the application
+     *
+     * @param mainApp The main application itself
+     * @param ui The Ui component of Duke
+     */
     private void initialise(Stoppable mainApp, Ui ui) {
         String filePath = "data/tasks.txt";
         initialiseStorage(filePath);

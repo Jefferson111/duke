@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -31,22 +30,24 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
     private Stage primaryStage;
-
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
     private Logic logic;
-    private DukeApp dukeApp;
-
 
     public MainWindow(Stage primaryStage) {
         super(FXML, primaryStage);
         this.primaryStage = primaryStage;
     }
 
-    @FXML
+    /**
+     * Initialises the application by instantiating the logic and ui objects
+     *
+     * @param dukeApp The main application itself; to allow logic to stop the application
+     */
     public void initialise(DukeApp dukeApp) {
-        this.dukeApp = dukeApp;
         Ui ui = new Ui(dialogContainer);
         logic = new Logic(dukeApp, ui);
+
+        //random stuff
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
@@ -57,6 +58,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+
+        //Echo user input
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, user)
         );
@@ -68,6 +71,8 @@ public class MainWindow extends UiPart<Stage> {
     private void handleUserImageInput() {
         try {
             File imageFile = getFile();
+
+            //Echo user input
             dialogContainer.getChildren().addAll(
                     ImageDialogBox.getUserDialog(new Image(imageFile.toURI().toString()), user)
             );
@@ -77,15 +82,27 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Closes the application.
+     */
     @FXML
     private void handleExit() {
         logic.tryExitApp();
     }
 
+    /**
+     * Shows the application.
+     */
     public void show() {
         primaryStage.show();
     }
 
+    /**
+     * Gets the file in which an image (*.jpg or *.png) resides in using FileChooser.
+     *
+     * @return File containing the user-selected image
+     * @throws Exception Not sure
+     */
     private File getFile() throws Exception {
         FileChooser.ExtensionFilter imageFilter
                 = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
