@@ -7,7 +7,7 @@ import duke.commons.DukeException;
 import duke.data.taskList.TaskListAllTypes;
 import duke.logic.parser.Parser;
 import duke.storage.Storage;
-import duke.ui.Stoppable;
+import duke.commons.Stoppable;
 import duke.ui.Ui;
 
 import java.io.File;

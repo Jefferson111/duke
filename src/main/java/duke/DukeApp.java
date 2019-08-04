@@ -1,21 +1,15 @@
 package duke;
 
 import duke.ui.MainWindow;
-import duke.ui.Stoppable;
+import duke.commons.Stoppable;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class DukeApp extends Application implements Stoppable {
 
     @Override
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) throws Exception {
         try {
             MainWindow mainWindow = new MainWindow(stage);
             mainWindow.show();
