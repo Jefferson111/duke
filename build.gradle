@@ -26,6 +26,7 @@ javafx {
             , 'javafx.base'
             , 'javafx.graphics'
             , 'javafx.fxml'
+            , 'javafx.web'
     ]
 }
 
