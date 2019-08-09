@@ -2,6 +2,8 @@ package duke.ui;
 
 import duke.DukeApp;
 import duke.logic.Logic;
+import duke.ui.calendar.CalendarWindow;
+import duke.ui.game.MainGameWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -32,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
     private Logic logic;
+    private CalendarWindow calendarWindow;
+    //private MainGameWindow mainGameWindow;
 
     public MainWindow(Stage primaryStage) {
         super(FXML, primaryStage);
@@ -49,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
         //random stuff
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        calendarWindow = new CalendarWindow(logic.getTasks());
+        //mainGameWindow = new MainGameWindow();
     }
 
     /**
@@ -79,6 +86,26 @@ public class MainWindow extends UiPart<Stage> {
             logic.getImageResponse(imageFile);
         } catch (Exception e) {
             //user cancelled operation, do nothing
+        }
+    }
+
+    @FXML
+    private void handleGame() {
+        /*
+        if (mainGameWindow.isShowing()) {
+            mainGameWindow.focus();
+        } else {
+            mainGameWindow.show();
+        }
+         */
+    }
+
+    @FXML
+    private void handleCalendar() {
+        if (calendarWindow.isShowing()) {
+            calendarWindow.focus();
+        } else {
+            calendarWindow.show();
         }
     }
 
