@@ -63,7 +63,7 @@ public class Storage {
                 } else if (t instanceof Todo) {
                     line = "T | " + ((Todo) t).isDone() + " | " + t.getDescription();
                 } else if (t instanceof Weekly) {
-                    line = "W | " + ((Weekly) t).isDone() + " | " + t.getDescription() + " | " + ((Weekly) t).getOn();
+                    line = "W | " + ((Weekly) t).isDone() + " | " + t.getDescription() + " | " + ((Weekly) t).getOn().toString();
                 } else {
                     line = "E | " + ((Event) t).isDone() + " | " + t.getDescription() + " | " + ((Event) t).getAt();
                 }
@@ -80,7 +80,7 @@ public class Storage {
      *
      * @param filePath Relative path to the file
      * @return List of Strings read from the file
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException If file is not found
      */
     private static List<String> getLines(String filePath) throws FileNotFoundException {
         File f = new File(filePath);

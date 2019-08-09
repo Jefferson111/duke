@@ -48,15 +48,15 @@ public class TimeParser {
         }
     }
 
-    public static String parseStringToDay(String line) throws DukeException {
+    public static DayOfWeek parseStringToDay(String line) throws DukeException {
          line = capitalizeFirstLetter(line);
          try {
              TemporalAccessor accessor = DateTimeFormatter.ofPattern("E").parse(line);
-             return DayOfWeek.from(accessor).toString();
+             return DayOfWeek.from(accessor);
          } catch (DateTimeParseException e1) {
              try {
                  TemporalAccessor accessor = DateTimeFormatter.ofPattern("EEEE").parse(line);
-                 return DayOfWeek.from(accessor).toString();
+                 return DayOfWeek.from(accessor);
              } catch (DateTimeParseException e2) {
                  throw new DukeException("Please enter days in following format: Monday/Mon, Tuesday/Tue, ... as fields.");
              }

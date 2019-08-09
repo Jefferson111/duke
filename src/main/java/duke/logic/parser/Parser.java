@@ -5,6 +5,7 @@ import duke.data.task.*;
 import duke.ui.Ui;
 import duke.commons.DukeException;
 
+import java.time.DayOfWeek;
 import java.util.Date;
 
 public class Parser {
@@ -94,7 +95,7 @@ public class Parser {
         if (weeklyDetails[0].strip().isEmpty()) {
             throw new DukeException("The description of a weekly cannot be empty.");
         }
-        String day = TimeParser.parseStringToDay(weeklyDetails[1].strip());
+        DayOfWeek day = TimeParser.parseStringToDay(weeklyDetails[1].strip());
         return new Weekly(weeklyDetails[0].strip(), day);
     }
 

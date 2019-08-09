@@ -1,5 +1,7 @@
 package duke.logic;
 
+import duke.data.task.TaskWithDates;
+import duke.data.taskList.TaskListWithDates;
 import duke.logic.imageHelper.Classificator;
 import duke.logic.commands.Command;
 import duke.logic.commands.ImageCommand;
@@ -88,5 +90,9 @@ public class Logic {
         } catch (Exception e) {
             ui.showError(e.getMessage());
         }
+    }
+
+    public TaskListAllTypes getTasks() {
+        return tasks;
     }
 }
