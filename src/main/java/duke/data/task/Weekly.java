@@ -1,15 +1,22 @@
 package duke.data.task;
 
+import java.time.DayOfWeek;
+
 public class Weekly extends Task {
 
-    protected String on;
+    protected DayOfWeek on;
 
-    public Weekly(String description, String on) {
+    public Weekly(String description, DayOfWeek on) {
         super(description);
         this.on = on;
     }
 
-    public String getOn() {
+    public Weekly(String description, String on) {
+        super(description);
+        this.on = DayOfWeek.valueOf(on);
+    }
+
+    public DayOfWeek getOn() {
         return on;
     }
     public boolean isDone() {
@@ -18,6 +25,6 @@ public class Weekly extends Task {
 
     @Override
     public String toString() {
-        return "[W]" + super.toString() + " (every: " + on + ")";
+        return "[W]" + super.toString() + " (every: " + on.toString() + ")";
     }
 }
