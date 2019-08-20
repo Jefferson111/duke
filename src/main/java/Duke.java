@@ -11,22 +11,36 @@ public class Duke {
      * Entry point.
      */
     public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         Ui ui = new Ui();
         ui.showWelcome();
         while (true) {
             String command = ui.readCommand();
-            if (!command.equals("bye") && !command.equals("list")) {
-                list.add(command);
-                System.out.println("added: " + command);
+            if (command.equals("list")) {
+                ui.showList(tasks);
             } else if (command.equals("bye")) {
                 break;
+            } else if (command.substring(0, "done".length()).equals("done")) {
+                markDoneCommand(tasks, ui, command);
             } else {
-                for (int i = 0; i < list.size(); ++i) {
-                    System.out.println((i + 1) + ". " + list.get(i));
-                }
+                tasks.add(new Task(command));
+                ui.showAdd(command);
             }
         }
         ui.showBye();
+    }
+
+    /**
+     * Marks a task as done.
+     *
+     * @param tasks The ArrayList containing all the tasks.
+     * @param ui The ui of Duke.
+     * @param command The user input in String representation.
+     */
+    private static void markDoneCommand(ArrayList<Task> tasks, Ui ui, String command) {
+        int index = Integer.parseInt(command.replaceAll("\\D+", "")); //remember handle exceptions later
+        Task task = tasks.get(index - 1);
+        task.setDone(true);
+        ui.showMarkDone(task);
     }
 }

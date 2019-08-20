@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,6 +12,7 @@ public class Ui {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?\n";
     private static final String BYE_MESSAGE = "Bye. Hope to see you again soon!\n";
+    private static final String MARK_DONE_MESSAGE = "Nice! I've marked this task as done:\n  ";
     private Scanner scanner;
 
     public Ui() {
@@ -30,6 +32,29 @@ public class Ui {
      */
     public void showBye() {
         System.out.println(BYE_MESSAGE);
+    }
+
+    /**
+     * Prints the list of tasks.
+     */
+    public void showList(ArrayList<Task> tasks) {
+        for (int i = 0; i < tasks.size(); ++i) {
+            System.out.println((i + 1) + ". " + tasks.get(i));
+        }
+    }
+
+    /**
+     * Prints the description of a task.
+     */
+    public void showAdd(String description) {
+        System.out.println("added: " + description);
+    }
+
+    /**
+     * Prints the task that is mark done.
+     */
+    public void showMarkDone(Task task) {
+        System.out.println(MARK_DONE_MESSAGE + task);
     }
 
     /**
