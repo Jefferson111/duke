@@ -1,3 +1,5 @@
+package task;
+
 /**
  * A generic task, which can be marked as done.
  */
