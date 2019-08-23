@@ -1,18 +1,27 @@
 package task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Event extends Task {
-    private LocalDate startDate;
+    private LocalDateTime startDate;
+
+    /**
+     * Initializes a event not yet done with the given description and a date.
+     *
+     * @param description A description of this event.
+     */
+    public Event(String description, LocalDateTime startDate) {
+        this(description);
+        this.startDate = startDate;
+    }
 
     /**
      * Initializes a event not yet done with the given description.
      *
      * @param description A description of this event.
      */
-    public Event(String description, LocalDate startDate) {
+    public Event(String description) {
         super(description);
-        this.startDate = startDate;
     }
 
     /**

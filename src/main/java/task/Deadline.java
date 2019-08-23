@@ -1,18 +1,27 @@
 package task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Deadline extends Task {
-    private LocalDate startDate;
+    private LocalDateTime startDate;
+
+    /**
+     * Initializes a deadline not yet done with the given description and a date.
+     *
+     * @param description A description of this deadline.
+     */
+    public Deadline(String description, LocalDateTime startDate) {
+        this(description);
+        this.startDate = startDate;
+    }
 
     /**
      * Initializes a deadline not yet done with the given description.
      *
      * @param description A description of this deadline.
      */
-    public Deadline(String description, LocalDate startDate) {
+    public Deadline(String description) {
         super(description);
-        this.startDate = startDate;
     }
 
     /**
