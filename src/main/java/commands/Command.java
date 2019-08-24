@@ -1,5 +1,6 @@
 package commands;
 
+import commons.DukeException;
 import tasks.Task;
 import ui.Ui;
 
@@ -15,5 +16,5 @@ public abstract class Command {
      * @param ui The user interface displaying events on the task list.
      * @param tasks The task list.
      */
-    public abstract void execute(Ui ui, ArrayList<Task> tasks);
+    public abstract void execute(Ui ui, ArrayList<Task> tasks) throws DukeException;
 }

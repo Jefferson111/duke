@@ -1,5 +1,6 @@
 import commands.Command;
 import commands.ExitCommand;
+import commons.DukeException;
 import parsers.Parser;
 import ui.Ui;
 import tasks.Task;
@@ -28,7 +29,7 @@ public class Duke {
                 if (command instanceof ExitCommand) {
                     break;
                 }
-            } catch (IllegalArgumentException e) {
+            } catch (DukeException e) {
                 ui.showError(e.getMessage());
             }
         }

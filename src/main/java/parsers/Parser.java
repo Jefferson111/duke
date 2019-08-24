@@ -5,6 +5,8 @@ import commands.Command;
 import commands.ExitCommand;
 import commands.ListCommand;
 import commands.MarkDoneCommand;
+import commons.DukeException;
+import commons.Message;
 
 /**
  * Parser for commands entered by the Duke user. It reads from standard input and
@@ -18,7 +20,7 @@ public class Parser {
      * @return The corresponding Command object.
      * @throws IllegalArgumentException If userInput is undefined.
      */
-    public static Command parse(String userInput) throws IllegalArgumentException {
+    public static Command parse(String userInput) throws DukeException {
         String commandWord = getCommandWord(userInput);
         switch (commandWord) {
         case "bye":
@@ -34,7 +36,7 @@ public class Parser {
         case "done":
             return new MarkDoneCommand(ParserUtil.getIndex(userInput));
         default:
-            throw new IllegalArgumentException("I'm sorry, but I don't know what that means :-(");
+            throw new DukeException(Message.UNKNOWN_COMMAND);
         }
     }
 

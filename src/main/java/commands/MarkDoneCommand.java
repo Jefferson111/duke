@@ -1,5 +1,7 @@
 package commands;
 
+import commons.DukeException;
+import commons.Message;
 import tasks.Task;
 import ui.Ui;
 
@@ -27,9 +29,13 @@ public class MarkDoneCommand extends Command {
      * @param tasks The task list.
      */
     @Override
-    public void execute(Ui ui, ArrayList<Task> tasks) {
-        Task task = tasks.get(index);
-        task.setDone(true);
-        ui.showMarkDone(task);
+    public void execute(Ui ui, ArrayList<Task> tasks) throws DukeException {
+        try {
+            Task task = tasks.get(index);
+            task.setDone(true);
+            ui.showMarkDone(task);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Message.OUT_OF_BOUNDS);
+        }
     }
 }
