@@ -1,9 +1,13 @@
-package task;
+package tasks;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class representing a deadline.
+ */
 public class Deadline extends Task {
     private LocalDateTime startDate;
+    private String deadline;
 
     /**
      * Initializes a deadline not yet done with the given description and a date.
@@ -11,7 +15,7 @@ public class Deadline extends Task {
      * @param description A description of this deadline.
      */
     public Deadline(String description, LocalDateTime startDate) {
-        this(description);
+        super(description);
         this.startDate = startDate;
     }
 
@@ -20,8 +24,9 @@ public class Deadline extends Task {
      *
      * @param description A description of this deadline.
      */
-    public Deadline(String description) {
+    public Deadline(String description, String deadline) {
         super(description);
+        this.deadline = deadline;
     }
 
     /**
@@ -31,6 +36,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + (isDone ? "[✓] " : "[✘]") + description;
+        return "[D]" + (isDone ? "[✓] " : "[✘] ") + description + " (by: " + deadline + ")";
     }
 }

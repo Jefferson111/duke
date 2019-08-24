@@ -1,4 +1,6 @@
-import task.Task;
+package ui;
+
+import tasks.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,9 +14,10 @@ public class Ui {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?\n";
-    private static final String BYE_MESSAGE = "Bye. Hope to see you again soon!\n";
-    private static final String MARK_DONE_MESSAGE = "Nice! I've marked this task as done:\n  ";
+    private static final String MESSAGE_WELCOME = "Hello! I'm Duke\nWhat can I do for you?\n";
+    private static final String MESSAGE_BYE = "Bye. Hope to see you again soon!\n";
+    private static final String MESSAGE_MARK_DONE = "Nice! I've marked this task as done:\n  ";
+    public static final String MESSAGE_ADDITION = "Got it. I've added this task:\n  ";
     private Scanner scanner;
 
     public Ui() {
@@ -26,14 +29,21 @@ public class Ui {
      */
     public void showWelcome() {
         System.out.println("Hello from\n" + logo);
-        System.out.println(WELCOME_MESSAGE);
+        System.out.println(MESSAGE_WELCOME);
+    }
+
+    /**
+     * Prints an error message to the user.
+     */
+    public void showError(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
     /**
      * Prints a bye message to the user, which happens upon exit.
      */
     public void showBye() {
-        System.out.println(BYE_MESSAGE);
+        System.out.println(MESSAGE_BYE);
     }
 
     /**
@@ -48,15 +58,15 @@ public class Ui {
     /**
      * Prints the description of a task.
      */
-    public void showAdd(String description) {
-        System.out.println("added: " + description);
+    public void showAdd(Task task) {
+        System.out.println(MESSAGE_ADDITION + task);
     }
 
     /**
      * Prints the task that is mark done.
      */
     public void showMarkDone(Task task) {
-        System.out.println(MARK_DONE_MESSAGE + task);
+        System.out.println(MESSAGE_MARK_DONE + task);
     }
 
     /**

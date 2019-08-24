@@ -1,7 +1,9 @@
-package task;
+package tasks;
 
+/**
+ * Class representing a to-do.
+ */
 public class Todo extends Task {
-
     /**
      * Initializes a to-do not yet done with the given description.
      *
@@ -18,6 +20,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + (isDone ? "[✓] " : "[✘]") + description;
+        return "[T]" + (isDone ? "[✓] " : "[✘] ") + description;
     }
 }

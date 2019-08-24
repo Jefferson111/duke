@@ -1,4 +1,8 @@
-import task.Task;
+import commands.Command;
+import commands.ExitCommand;
+import parsers.Parser;
+import ui.Ui;
+import tasks.Task;
 
 import java.util.ArrayList;
 
@@ -17,32 +21,16 @@ public class Duke {
         Ui ui = new Ui();
         ui.showWelcome();
         while (true) {
-            String command = ui.readCommand();
-            if (command.equals("list")) {
-                ui.showList(tasks);
-            } else if (command.equals("bye")) {
-                break;
-            } else if (command.substring(0, "done".length()).equals("done")) {
-                markDoneCommand(tasks, ui, command);
-            } else {
-                tasks.add(new Task(command));
-                ui.showAdd(command);
+            String userInput = ui.readCommand();
+            try {
+                Command command = Parser.parse(userInput);
+                command.execute(ui, tasks);
+                if (command instanceof ExitCommand) {
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                ui.showError(e.getMessage());
             }
         }
-        ui.showBye();
-    }
-
-    /**
-     * Marks a task as done.
-     *
-     * @param tasks The ArrayList containing all the tasks.
-     * @param ui The ui of Duke.
-     * @param command The user input in String representation.
-     */
-    private static void markDoneCommand(ArrayList<Task> tasks, Ui ui, String command) {
-        int index = Integer.parseInt(command.replaceAll("\\D+", "")); //remember handle exceptions later
-        Task task = tasks.get(index - 1);
-        task.setDone(true);
-        ui.showMarkDone(task);
     }
 }

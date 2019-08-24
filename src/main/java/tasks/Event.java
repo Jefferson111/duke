@@ -1,9 +1,13 @@
-package task;
+package tasks;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class representing an event.
+ */
 public class Event extends Task {
     private LocalDateTime startDate;
+    private String event;
 
     /**
      * Initializes a event not yet done with the given description and a date.
@@ -11,7 +15,7 @@ public class Event extends Task {
      * @param description A description of this event.
      */
     public Event(String description, LocalDateTime startDate) {
-        this(description);
+        super(description);
         this.startDate = startDate;
     }
 
@@ -20,8 +24,9 @@ public class Event extends Task {
      *
      * @param description A description of this event.
      */
-    public Event(String description) {
+    public Event(String description, String event) {
         super(description);
+        this.event = event;
     }
 
     /**
@@ -31,6 +36,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + (isDone ? "[✓] " : "[✘]") + description;
+        return "[E]" + (isDone ? "[✓] " : "[✘] ") + description + " (at: " + event + ")";
     }
 }
