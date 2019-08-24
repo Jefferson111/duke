@@ -1,5 +1,8 @@
 package commons;
 
+/**
+ * Messages used by Duke.
+ */
 public class Message {
     public static final String UNKNOWN_COMMAND = "☹ I'm sorry, but I don't know what that means :-(";
     public static final String EMPTY_DESCRIPTION = "⛔ The description cannot be empty. :-(";
