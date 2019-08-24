@@ -36,6 +36,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + (isDone ? "[✓] " : "[✘] ") + description + " (at: " + event + ")";
+        return "[E]" + super.toString() + " (at: " + event + ")";
     }
 }

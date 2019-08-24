@@ -36,6 +36,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + (isDone ? "[✓] " : "[✘] ") + description + " (by: " + deadline + ")";
+        return "[D]" + super.toString() + " (by: " + deadline + ")";
     }
 }

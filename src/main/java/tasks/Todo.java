@@ -20,6 +20,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + (isDone ? "[✓] " : "[✘] ") + description;
+        return "[T]" + super.toString();
     }
 }
