@@ -1,5 +1,6 @@
 package parsers;
 
+import commons.DukeDateTimeParseException;
 import commons.DukeException;
 import commons.Message;
 import tasks.Deadline;
@@ -38,7 +39,11 @@ public class ParserUtil {
         if (deadlineDetails[0].strip().isEmpty()) {
             throw new DukeException(Message.EMPTY_DESCRIPTION);
         }
-        return new Deadline(deadlineDetails[0].strip(), deadlineDetails[1].strip());
+        try {
+            return new Deadline(deadlineDetails[0].strip(), ParserTime.parseStringToDate(deadlineDetails[1].strip()));
+        } catch (DukeDateTimeParseException e) {
+            return new Deadline(deadlineDetails[0].strip(), deadlineDetails[1].strip());
+        }
     }
 
     /**
@@ -55,7 +60,11 @@ public class ParserUtil {
         if (eventDetails[0].strip().isEmpty()) {
             throw new DukeException(Message.EMPTY_DESCRIPTION);
         }
-        return new Event(eventDetails[0].strip(), eventDetails[1].strip());
+        try {
+            return new Event(eventDetails[0].strip(), ParserTime.parseStringToDate(eventDetails[1].strip()));
+        } catch (DukeDateTimeParseException e) {
+            return new Event(eventDetails[0].strip(), eventDetails[1].strip());
+        }
     }
 
     /**

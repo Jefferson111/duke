@@ -36,10 +36,10 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline + ")";
+        return "[D]" + super.toString() + " (by: " + (startDate == null ? deadline : startDate) + ")";
     }
 
     public String getDeadline() {
-        return deadline;
+        return startDate == null ? deadline : startDate.toString();
     }
 }

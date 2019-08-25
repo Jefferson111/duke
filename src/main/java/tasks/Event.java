@@ -36,10 +36,10 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + event + ")";
+        return "[E]" + super.toString() + " (at: " + (startDate == null ? event : startDate) + ")";
     }
 
     public String getEvent() {
-        return event;
+        return startDate == null ? event : startDate.toString();
     }
 }

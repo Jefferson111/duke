@@ -8,3 +8,4 @@ public class DukeException extends Exception {
         super(message);
     }
 }
+
