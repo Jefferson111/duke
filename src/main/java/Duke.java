@@ -2,6 +2,7 @@ import commands.Command;
 import commands.ExitCommand;
 import commons.DukeException;
 import parsers.Parser;
+import storage.Storage;
 import ui.Ui;
 import tasks.Task;
 
@@ -14,13 +15,23 @@ import java.util.ArrayList;
  * @author  Jefferson111
  */
 public class Duke {
+    private Ui ui;
+    private Storage storage;
+
     /**
      * Entry point.
      */
     public static void main(String[] args) {
-        ArrayList<Task> tasks = new ArrayList<>();
-        Ui ui = new Ui();
+        new Duke();
+    }
+
+    /**
+     * Creates Duke instance.
+     */
+    public Duke() {
+        ui = new Ui();
         ui.showWelcome();
+        ArrayList<Task> tasks = getStorageTasks();
         while (true) {
             String userInput = ui.readCommand();
             try {
@@ -32,6 +43,34 @@ public class Duke {
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             }
+        }
+        saveStorageTasks(tasks);
+    }
+
+    /**
+     * Gets the tasks stored in the given filepath and converts them to list of Task objects.
+     *
+     * @return The list of tasks stored.
+     */
+    private ArrayList<Task> getStorageTasks() {
+        String filePath = "tasks.txt";
+        try {
+            storage = new Storage(filePath);
+            return storage.read();
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
+        }
+        return new ArrayList<Task>();
+    }
+
+    /**
+     * Saves the tasks stored in the given filepath.
+     */
+    private void saveStorageTasks(ArrayList<Task> tasks) {
+        try {
+            storage.write(tasks);
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
         }
     }
 }
