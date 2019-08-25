@@ -6,6 +6,9 @@ import tasks.Deadline;
 import tasks.Event;
 import tasks.Todo;
 
+/**
+ * Parser for utility functions.
+ */
 public class ParserUtil {
     /**
      * Parses the userInput and return a new to-do constructed from it.

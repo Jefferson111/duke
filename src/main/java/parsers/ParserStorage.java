@@ -7,6 +7,9 @@ import tasks.Event;
 import tasks.Task;
 import tasks.Todo;
 
+/**
+ * Parser for Storage related operations.
+ */
 public class ParserStorage {
     /**
      * Parses a task from String format back to task.
