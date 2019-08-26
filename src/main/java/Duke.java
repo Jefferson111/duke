@@ -60,7 +60,7 @@ public class Duke {
         } catch (DukeException e) {
             ui.showError(e.getMessage());
         }
-        return new ArrayList<Task>();
+        return new ArrayList<>();
     }
 
     /**

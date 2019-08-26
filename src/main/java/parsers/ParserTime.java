@@ -23,9 +23,10 @@ public class ParserTime {
      * @throws DukeDateTimeParseException If the format is invalid.
      */
     public static LocalDateTime parseStringToDate(String line) throws DukeDateTimeParseException {
-        String[] patterns = {"E", "EEEE", "dd/MM/yyyy HHmm", "dd/MM/yy HHmm", "HHmm", "dd/MM/yy"};
+        String[] patterns = {"E", "EEEE", "dd/MM/yyyy HHmm", "dd/MM/yy HHmm", "HHmm", "dd/MM/yy", "yyyy-MM-dd'T'HH:mm[:ss.n]"};
         TimePatternType[] types = {TimePatternType.DAY_OF_WEEK, TimePatternType.DAY_OF_WEEK,
-            TimePatternType.DATE_TIME, TimePatternType.DATE_TIME, TimePatternType.TIME, TimePatternType.DATE};
+            TimePatternType.DATE_TIME, TimePatternType.DATE_TIME, TimePatternType.TIME, TimePatternType.DATE,
+            TimePatternType.DATE_TIME};
         for (int i = 0; i < patterns.length;) {
             try {
                 TemporalAccessor accessor = DateTimeFormatter.ofPattern(patterns[i]).parse(line);

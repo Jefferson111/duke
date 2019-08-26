@@ -1,5 +1,6 @@
 package parsers;
 
+import commons.DukeDateTimeParseException;
 import commons.DukeException;
 import commons.Message;
 import tasks.Deadline;
@@ -25,9 +26,17 @@ public class ParserStorage {
             String description = taskParts[2].strip();
             Task task;
             if (type.equals("D")) {
-                task = new Deadline(description, taskParts[3].strip());
+                try {
+                    task = new Deadline(description, ParserTime.parseStringToDate(taskParts[3].strip()));
+                } catch (DukeDateTimeParseException e) {
+                    task = new Deadline(description, taskParts[3].strip());
+                }
             } else if (type.equals("E")) {
-                task = new Event(description, taskParts[3].strip());
+                try {
+                    task = new Event(description, ParserTime.parseStringToDate(taskParts[3].strip()));
+                } catch (DukeDateTimeParseException e) {
+                    task = new Event(description, taskParts[3].strip());
+                }
             } else {
                 task = new Todo(description);
             }
