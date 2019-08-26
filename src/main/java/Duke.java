@@ -1,11 +1,14 @@
 import commands.Command;
 import commands.ExitCommand;
 import commons.DukeException;
+import commons.Message;
 import parsers.Parser;
 import storage.Storage;
 import ui.Ui;
 import tasks.Task;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -59,6 +62,8 @@ public class Duke {
             return storage.read();
         } catch (DukeException e) {
             ui.showError(e.getMessage());
+        } catch (FileNotFoundException e) {
+            ui.showError(Message.FILE_NOT_FOUND);
         }
         return new ArrayList<>();
     }
@@ -71,6 +76,8 @@ public class Duke {
             storage.write(tasks);
         } catch (DukeException e) {
             ui.showError(e.getMessage());
+        } catch (IOException e) {
+            ui.showError(Message.FILE_NOT_SAVE);
         }
     }
 }

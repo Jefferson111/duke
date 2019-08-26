@@ -26,37 +26,31 @@ public class Storage {
      * Reads tasks from filepath.
      *
      * @return List of tasks.
-     * @throws DukeException If file not found.
+     * @throws DukeException If tasks.txt cannot be converted to task.
+     * @throws FileNotFoundException If file not found.
      */
-    public ArrayList<Task> read() throws DukeException {
-        try {
-            File f = new File(filePath);
-            Scanner s = new Scanner(f);
-            ArrayList<Task> tasks = new ArrayList<>();
-            while (s.hasNext()) {
-                tasks.add(ParserStorage.createTaskFromStorage(s.nextLine()));
-            }
-            return tasks;
-        } catch (FileNotFoundException e) {
-            throw new DukeException(Message.FILE_NOT_FOUND);
+    public ArrayList<Task> read() throws DukeException, FileNotFoundException {
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
+        ArrayList<Task> tasks = new ArrayList<>();
+        while (s.hasNext()) {
+            tasks.add(ParserStorage.createTaskFromStorage(s.nextLine()));
         }
+        return tasks;
     }
 
     /**
      * Writes the tasks into a file of the given filepath.
      *
      * @param tasks List of tasks.
-     * @throws DukeException If file cannot be written/found.
+     * @throws IOException If file cannot be written/found.
+     * @throws DukeException If task cannot be converted to String in tasks.txt.
      */
-    public void write(ArrayList<Task> tasks) throws DukeException {
-        try {
-            FileWriter writer = new FileWriter(filePath);
-            for (Task task : tasks) {
-                writer.write(ParserStorage.toStorageString(task) + "\n");
-            }
-            writer.close();
-        } catch (IOException e) {
-            throw new DukeException(Message.FILE_NOT_SAVE);
+    public void write(ArrayList<Task> tasks) throws IOException, DukeException {
+        FileWriter writer = new FileWriter(filePath);
+        for (Task task : tasks) {
+            writer.write(ParserStorage.toStorageString(task) + "\n");
         }
+        writer.close();
     }
 }
