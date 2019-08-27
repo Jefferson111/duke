@@ -1,8 +1,10 @@
 package storage;
 
 import commons.DukeException;
+import commons.Message;
 import parsers.ParserStorage;
 import tasks.Task;
+import ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,40 +18,60 @@ import java.util.Scanner;
  */
 public class Storage {
     private String filePath;
+    private ArrayList<Task> tasks;
+    private Ui ui;
 
-    public Storage(String filePath) {
+    /**
+     * Constructs a Storage object that contains tasks and storage related operations.
+     * Mainly save tasks and get tasks.
+     *
+     * @param filePath The filepath to the txt file.
+     * @param ui The user interface displaying events on the task list.
+     */
+    public Storage(String filePath, Ui ui) {
         this.filePath = filePath;
+        this.ui = ui;
+        read();
     }
 
     /**
-     * Reads tasks from filepath.
-     *
-     * @return List of tasks.
-     * @throws DukeException If tasks.txt cannot be converted to task.
-     * @throws FileNotFoundException If file not found.
+     * Reads tasks from filepath. Creates empty tasks if file cannot be read.
      */
-    public ArrayList<Task> read() throws DukeException, FileNotFoundException {
-        File f = new File(filePath);
-        Scanner s = new Scanner(f);
-        ArrayList<Task> tasks = new ArrayList<>();
-        while (s.hasNext()) {
-            tasks.add(ParserStorage.createTaskFromStorage(s.nextLine()));
+    private void read() {
+        ArrayList<Task> newTasks = new ArrayList<>();
+        try {
+            File f = new File(filePath);
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                newTasks.add(ParserStorage.createTaskFromStorage(s.nextLine()));
+            }
+            s.close();
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
+        } catch (FileNotFoundException e) {
+            ui.showError(Message.FILE_NOT_FOUND);
         }
-        return tasks;
+        tasks = newTasks;
     }
 
     /**
      * Writes the tasks into a file of the given filepath.
-     *
-     * @param tasks List of tasks.
-     * @throws IOException If file cannot be written/found.
-     * @throws DukeException If task cannot be converted to String in tasks.txt.
      */
-    public void write(ArrayList<Task> tasks) throws IOException, DukeException {
-        FileWriter writer = new FileWriter(filePath);
-        for (Task task : tasks) {
-            writer.write(ParserStorage.toStorageString(task) + "\n");
+    public void write() {
+        try {
+            FileWriter writer = new FileWriter(filePath);
+            for (Task task : tasks) {
+                writer.write(ParserStorage.toStorageString(task) + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            ui.showError(Message.FILE_NOT_SAVE);
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
         }
-        writer.close();
+    }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 }
