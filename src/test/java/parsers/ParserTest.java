@@ -7,7 +7,6 @@ import commands.MarkDoneCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserTest {
 
@@ -23,10 +22,5 @@ class ParserTest {
         } catch (Exception e) {
             System.out.println("Fail");
         }
-    }
-
-    @Test
-    void getCommandWord() {
-        assertEquals(Parser.getCommandWord("todo homework"), "todo");
     }
 }
