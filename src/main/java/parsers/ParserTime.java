@@ -23,7 +23,8 @@ class ParserTime {
      * @throws DukeDateTimeParseException If the format is invalid.
      */
     static LocalDateTime parseStringToDate(String line) throws DukeDateTimeParseException {
-        String[] patterns = {"E", "EEEE", "dd/MM/yyyy HHmm", "dd/MM/yy HHmm", "HHmm",
+        String[] patterns = {"['next ']['this ']E", "['this ']['next ']EEEE", "dd/MM/yyyy HHmm",
+                             "dd/MM/yy HHmm", "HHmm",
                              "dd/MM/yy", "yyyy-MM-dd'T'HH:mm[:ss.n]"};
         TimePatternType[] types = {TimePatternType.DAY_OF_WEEK, TimePatternType.DAY_OF_WEEK,
             TimePatternType.DATE_TIME, TimePatternType.DATE_TIME, TimePatternType.TIME, TimePatternType.DATE,
