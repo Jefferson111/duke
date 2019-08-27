@@ -46,7 +46,7 @@ public class Parser {
      * @param userInput The userInput read by the user interface.
      * @return The command word.
      */
-    public static String getCommandWord(String userInput) {
+    private static String getCommandWord(String userInput) {
         return userInput.strip().split(" ")[0];
     }
 }

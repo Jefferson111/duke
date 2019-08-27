@@ -17,7 +17,7 @@ public class ParserUtil {
      * @param userInput The userInput read by the user interface.
      * @return The new to-do object.
      */
-    public static Todo createTodo(String userInput) throws DukeException {
+    static Todo createTodo(String userInput) throws DukeException {
         String description = userInput.substring("todo".length()).strip();
         if (description.isEmpty()) {
             throw new DukeException(Message.EMPTY_DESCRIPTION);
@@ -31,7 +31,7 @@ public class ParserUtil {
      * @param userInput The userInput read by the user interface.
      * @return The new deadline object.
      */
-    public static Deadline createDeadline(String userInput) throws DukeException {
+    static Deadline createDeadline(String userInput) throws DukeException {
         String[] deadlineDetails = userInput.substring("deadline".length()).strip().split("/by");
         if (deadlineDetails.length != 2 || deadlineDetails[1] == null) {
             throw new DukeException(Message.INVALID_FORMAT);
@@ -52,7 +52,7 @@ public class ParserUtil {
      * @param userInput The userInput read by the user interface.
      * @return The new event object.
      */
-    public static Event createEvent(String userInput) throws DukeException {
+    static Event createEvent(String userInput) throws DukeException {
         String[] eventDetails = userInput.substring("event".length()).strip().split("/at");
         if (eventDetails.length != 2 || eventDetails[1] == null) {
             throw new DukeException(Message.INVALID_FORMAT);
@@ -73,7 +73,7 @@ public class ParserUtil {
      * @param userInput The userInput read by the user interface.
      * @return The index.
      */
-    public static int getIndex(String userInput) throws DukeException {
+    static int getIndex(String userInput) throws DukeException {
         try {
             int index = Integer.parseInt(userInput.replaceAll("\\D+", ""));
             return index - 1;

@@ -31,7 +31,7 @@ public class Duke {
     /**
      * Creates Duke instance.
      */
-    public Duke() {
+    private Duke() {
         ui = new Ui();
         ui.showWelcome();
         ArrayList<Task> tasks = getStorageTasks();

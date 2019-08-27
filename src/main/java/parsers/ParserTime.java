@@ -14,7 +14,7 @@ import java.time.temporal.TemporalAdjusters;
 /**
  * Parser for Time related operations.
  */
-public class ParserTime {
+class ParserTime {
     /**
      * Parses a String into a LocalDateTime object.
      *
@@ -22,7 +22,7 @@ public class ParserTime {
      * @return The date and time, missing information wil be padded with current time information.
      * @throws DukeDateTimeParseException If the format is invalid.
      */
-    public static LocalDateTime parseStringToDate(String line) throws DukeDateTimeParseException {
+    static LocalDateTime parseStringToDate(String line) throws DukeDateTimeParseException {
         String[] patterns = {"E", "EEEE", "dd/MM/yyyy HHmm", "dd/MM/yy HHmm", "HHmm",
                              "dd/MM/yy", "yyyy-MM-dd'T'HH:mm[:ss.n]"};
         TimePatternType[] types = {TimePatternType.DAY_OF_WEEK, TimePatternType.DAY_OF_WEEK,
