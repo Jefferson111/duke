@@ -1,6 +1,7 @@
 package parsers;
 
 import commands.DeleteCommand;
+import commands.FindCommand;
 import commands.AddCommand;
 import commands.Command;
 import commands.ExitCommand;
@@ -38,6 +39,8 @@ public class Parser {
             return new MarkDoneCommand(ParserUtil.getIndex(userInput));
         case "delete":
             return new DeleteCommand(ParserUtil.getIndex(userInput));
+        case "find":
+            return new FindCommand(getWord(userInput));
         default:
             throw new DukeException(Message.UNKNOWN_COMMAND);
         }
@@ -51,5 +54,19 @@ public class Parser {
      */
     private static String getCommandWord(String userInput) {
         return userInput.strip().split(" ")[0];
+    }
+
+    /**
+     * Gets word from the userInput.
+     *
+     * @param userInput The userInput read by the user interface.
+     * @return The word.
+     */
+    private static String getWord(String userInput) throws DukeException {
+        try {
+            return userInput.strip().split(" ")[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException(Message.INVALID_FORMAT);
+        }
     }
 }
