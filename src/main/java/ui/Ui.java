@@ -18,6 +18,7 @@ public class Ui {
     private static final String MESSAGE_BYE = "Bye. Hope to see you again soon!\n";
     private static final String MESSAGE_MARK_DONE = "Nice! I've marked this task as done:\n  ";
     private static final String MESSAGE_ADDITION = "Got it. I've added this task:\n  ";
+    private static final String MESSAGE_DELETE = "Alright! I've removed this task:\n  ";
     private Scanner scanner;
 
     public Ui() {
@@ -67,6 +68,13 @@ public class Ui {
      */
     public void showMarkDone(Task task) {
         System.out.println(MESSAGE_MARK_DONE + task);
+    }
+
+    /**
+     * Prints the task that is deleted.
+     */
+    public void showDelete(Task task) {
+        System.out.println(MESSAGE_DELETE + task);
     }
 
     /**

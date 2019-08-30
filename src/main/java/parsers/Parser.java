@@ -1,5 +1,6 @@
 package parsers;
 
+import commands.DeleteCommand;
 import commands.AddCommand;
 import commands.Command;
 import commands.ExitCommand;
@@ -35,6 +36,8 @@ public class Parser {
             return new ListCommand();
         case "done":
             return new MarkDoneCommand(ParserUtil.getIndex(userInput));
+        case "delete":
+            return new DeleteCommand(ParserUtil.getIndex(userInput));
         default:
             throw new DukeException(Message.UNKNOWN_COMMAND);
         }
