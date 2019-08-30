@@ -28,5 +28,5 @@ run {
 }
 
 application {
-    mainClassName = "Duke"
+    mainClassName = "duke.Duke"
 }
